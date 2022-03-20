@@ -1,0 +1,19 @@
+{
+    "name": "davidljz/sistema_citas",
+    "type": "project",
+    "require": {
+        "envms/fluentpdo": "^2.2.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "David LJ",
+            "email": "4dlj1995@gmail.com"
+        }
+    ]
+}
