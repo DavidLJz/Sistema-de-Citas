@@ -7,9 +7,8 @@ use App\Response;
 
 class Citas
 {
-  public function get()
+  public function get(int $id=0)
   {
-    echo 'hola mudno';
   }
 
   public function add()

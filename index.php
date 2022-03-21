@@ -11,6 +11,7 @@ $uri = $_SERVER['REQUEST_URI'];
 use App\Log;
 use App\Response;
 use App\Config\Routes;
+use App\Exceptions\HttpException;
 
 try {
   Routes::callRoute($method, $uri);
@@ -18,6 +19,14 @@ try {
 
 catch (\Throwable $e) {
   Log::error($e, compact('method', 'uri'));
+
+  if ( $e instanceof HttpException ) {
+    if (Response::wantsJson()) {
+      Response::apiResponse($e->getMessage(), [], $e->getCode());
+    } else {
+      Response::htmlError($e->getMessage(), $e->getCode());
+    }
+  }
 
   if (Response::wantsJson()) {
     Response::failInternal('Internal server error');

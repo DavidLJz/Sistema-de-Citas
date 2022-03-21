@@ -4,29 +4,29 @@ namespace App\Config;
 
 use App\Controller\Archivos;
 use App\Controller\Citas;
+use App\Exceptions\HttpException;
+use Exception;
 
 class Routes
 {
   public const LIST = [
-    'GET' => [
-      'citas' => [Citas::class, 'get'],
-      'archivos' => [Archivos::class, 'get']
+    'citas/{int}' => [
+      'GET' => [Citas::class,'get'],
     ],
 
-    'POST' => [
-      'citas' => [Citas::class, 'add'],
-      'archivos' => [Archivos::class, 'add'],
+    'citas' => [
+      'GET' => [Citas::class, 'get'],
+      'POST' => [Citas::class, 'add'],
+      'PATCH' => [Citas::class, 'update'],
+      'DELETE' => [Citas::class, 'delete'],
     ],
 
-    'PATCH' => [
-      'citas' => [Citas::class, 'update'],
-      'archivos' => [Archivos::class, 'update'],
-    ],
-
-    'DELETE' => [
-      'citas' => [Citas::class, 'delete'],
-      'archivos' => [Archivos::class, 'delete'],
-    ],
+    'archivos' => [
+      'GET' => [Archivos::class, 'get'],
+      'POST' => [Archivos::class, 'add'],
+      'PATCH' => [Archivos::class, 'update'],
+      'DELETE' => [Archivos::class, 'delete'],
+    ]
   ];
 
   public static function callRoute(string $method, string $uri) :void
@@ -34,18 +34,50 @@ class Routes
     $uri = urldecode($uri);
 
     $route = explode('?', $uri)[0];
-
-    // remove trailing slash
     $route = trim($route, " \t\n\r\0\x0B\\/");
 
-    $query = explode('&', explode('?', $uri)[1]);
+    $uri_params = explode('/', $route);
+    unset($uri_params[0]);
+    $uri_params = array_values($uri_params);
 
-    exit(var_dump($query));
+    foreach (self::LIST as $route_name => $methods) {
+      if ( $route === $route_name ) {
+        if ( empty($methods[ $method ]) ) {
+          throw new HttpException('Method not allowed', 405);
+        }
 
-    if ( empty(self::LIST[$method][$route]) ) {
-      throw new \Exception("Route not found");
+        if ( !is_callable($methods[ $method ]) ) {
+          throw new Exception('Invalid route');
+        }
+
+        $func = $methods[ $method ];
+      } else {
+        if ( strpos($route, explode('/', $route_name)[0]) !== 0 ) {
+          continue;
+        }
+
+        preg_match_all('/{([^{}]+)}/u', $route_name, $xmatches);
+        $preset_params = $xmatches[1];
+
+        if ( count($preset_params) !== count($uri_params) ) {
+          continue;
+        }
+
+        foreach ($preset_params as $n => $preset) {
+          $param = $uri_params[$n];
+
+          if ( $preset === 'int' && !is_numeric($param) ) {
+            continue 2;
+          }
+        }
+
+        $func = $methods[ $method ];
+      }
+
+      call_user_func($func, ...$uri_params);
+      return;
     }
-    
-    call_user_func(self::LIST[$method][$route], $query);
+
+    throw new HttpException('Not found', 404);
   }
 }
