@@ -8,7 +8,7 @@ use Exception;
 class Admin
 {
   protected $mime = null;
-  protected $dir_archivos = './archivos';
+  protected $dir_archivos = './uploads/';
   protected $gapi_key = null;
 
   function __construct(string $env='prod')
