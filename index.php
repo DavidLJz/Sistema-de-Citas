@@ -18,15 +18,20 @@ try {
 }
 
 catch (\Throwable $e) {
-  Log::error($e, compact('method', 'uri'));
-
   if ( $e instanceof HttpException ) {
+    Log::error($e, $e->getData());
+
     if (Response::wantsJson()) {
-      Response::apiResponse($e->getMessage(), [], $e->getCode());
+      $data = $e->isPublicData() ? $e->getData() : [];
+      Response::apiResponse($e->getMessage(), $data, $e->getCode());
     } else {
       Response::htmlError($e->getMessage(), $e->getCode());
     }
+
+    exit;
   }
+
+  Log::error($e, compact('method', 'uri'));
 
   if (Response::wantsJson()) {
     Response::failInternal('Internal server error');
