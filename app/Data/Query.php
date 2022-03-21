@@ -12,4 +12,18 @@ class Query
 
     return $id;
   }
+
+  public static function getCita(int $id)
+  {
+    $cita = Db::getQuery()->from('citas')->where('id', $id)->fetch();
+
+    return $cita;
+  }
+
+  public static function getCitas()
+  {
+    $cita = Db::getQuery()->from('citas')->fetchAll();
+
+    return $cita;
+  }
 }

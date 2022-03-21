@@ -12,6 +12,19 @@ class Citas
 {
   public function get(int $id=0)
   {
+    if ( $id ) {
+      $cita = Query::getCita($id);
+
+      if ( empty($cita) ) {
+        return Response::failNotFound();
+      }
+
+      Response::apiResponse('cita', $cita);
+    }
+
+    $citas = Query::getCitas();
+
+    Response::apiResponse('citas', $citas);
   }
 
   public function add(Request $request)
