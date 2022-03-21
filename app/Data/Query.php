@@ -90,4 +90,9 @@ class Query
   {
     return Db::getQuery()->deleteFrom('ubicaciones')->where('nombre', $nombre)->execute();
   }
+
+  public static function addArchivo(array $data)
+  {
+    return Db::getQuery()->insertInto('archivos')->values($data)->execute();
+  }
 }

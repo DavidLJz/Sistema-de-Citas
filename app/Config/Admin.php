@@ -3,6 +3,7 @@
 namespace App\Config;
 
 use App\Config\Db;
+use Exception;
 
 class Admin
 {
@@ -20,6 +21,17 @@ class Admin
 
     if ( !empty($result) ) {
       $this->dir_archivos = $result['dir_archivos'];
+
+      if ( stripos($this->dir_archivos, '/', -1) !== strlen($this->dir_archivos)-1 ) {
+        $this->dir_archivos .= '/';
+      }
+
+      if ( !is_dir($this->dir_archivos) ) {
+        if ( !@mkdir($this->dir_archivos, 0777, true) ) {
+          throw new Exception('No se pudo crear el directorio de archivos');
+        }
+      }
+
       $this->gapi_key = $result['gapi_key'];
     }
   }
