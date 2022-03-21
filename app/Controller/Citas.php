@@ -12,6 +12,8 @@ class Citas
 {
   public function get(int $id=0)
   {
+    $include_files = $_GET['files'] ?? false;
+
     if ( $id ) {
       $cita = Query::getCita($id);
 
@@ -19,10 +21,20 @@ class Citas
         return Response::failNotFound();
       }
 
+      if ( $include_files ) {
+        $cita['archivos'] = Query::getCitaArchivos($id);
+      }
+
       Response::apiResponse('cita', $cita);
     }
 
     $citas = Query::getCitas();
+
+    if ( $include_files ) {
+      foreach ($citas as &$cita) {
+        $cita['archivos'] = Query::getCitaArchivos($cita['id']);
+      }
+    }
 
     Response::apiResponse('citas', $citas);
   }

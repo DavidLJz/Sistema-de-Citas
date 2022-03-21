@@ -95,4 +95,9 @@ class Query
   {
     return Db::getQuery()->insertInto('archivos')->values($data)->execute();
   }
+
+  public static function getCitaArchivos(int $cita_id)
+  {
+    return Db::getQuery()->from('archivos')->where('cita_id', $cita_id)->fetchAll();
+  }
 }

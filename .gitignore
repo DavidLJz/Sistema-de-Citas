@@ -3,3 +3,7 @@ vendor/
 *.workspace*
 *.sublime*
 /logs
+/uploads
+/archivos
+/subidas
+/files
