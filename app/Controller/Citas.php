@@ -62,6 +62,18 @@ class Citas
 
   public function delete(int $id, Request $request)
   {
+    try {
+      $result = Query::deleteCita($id);
+    }
+
+    catch (Throwable $e) {
+      Log::error('[Citas.delete]: ' . $e->getMessage(), compact('id'));
+      Log::error($e);
+
+      Response::failInternal('Error al eliminar la cita');
+    }
+
+    Response::apiResponse('Cita eliminada');
   }
   
   public function update(int $id, Request $request)

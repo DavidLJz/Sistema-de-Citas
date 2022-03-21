@@ -15,15 +15,16 @@ class Query
 
   public static function getCita(int $id)
   {
-    $cita = Db::getQuery()->from('citas')->where('id', $id)->fetch();
-
-    return $cita;
+    return Db::getQuery()->from('citas')->where('id', $id)->fetch();
   }
 
   public static function getCitas()
   {
-    $cita = Db::getQuery()->from('citas')->fetchAll();
+    return Db::getQuery()->from('citas')->fetchAll();
+  }
 
-    return $cita;
+  public static function deleteCita(int $id)
+  {
+    return Db::getQuery()->deleteFrom('citas', $id)->execute();
   }
 }
