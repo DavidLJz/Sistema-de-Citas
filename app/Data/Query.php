@@ -69,4 +69,25 @@ class Query
   {
     return Db::getQuery()->deleteFrom('tipos_documento')->where('nombre', $nombre)->execute();
   }
+
+  public static function getUbicaciones()
+  {
+    $results = Db::getQuery()->from('ubicaciones')->fetchAll();
+
+    if ( empty($results) ) {
+      return [];
+    }
+
+    return array_column($results, 'nombre');
+  }
+
+  public static function addUbicacion(string $nombre)
+  {
+    Db::getQuery()->insertInto('ubicaciones')->values(['nombre' => $nombre])->execute();
+  }
+
+  public static function deleteUbicacion(string $nombre)
+  {
+    return Db::getQuery()->deleteFrom('ubicaciones')->where('nombre', $nombre)->execute();
+  }
 }
