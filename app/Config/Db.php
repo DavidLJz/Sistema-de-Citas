@@ -19,7 +19,8 @@ class Db {
   {
     if ( empty(self::$query) ) {
       $pdo = new PDO(
-        'mysql:host=' . self::$db['host'] . ';dbname=' . self::$db['database'],
+        'mysql:host=' . self::$db['host'] . 
+        ';dbname=' . self::$db['database'] . ';charset=utf8mb4',
         self::$db['username'],
         self::$db['password']
       );
