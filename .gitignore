@@ -2,3 +2,4 @@ vendor/
 .env
 *.workspace*
 *.sublime*
+/logs
