@@ -46,6 +46,27 @@ class Query
 
   public static function deleteTramite(string $tramite)
   {
-    return Db::getQuery()->deleteFrom('citas')->where('tramite', $tramite)->execute();
+    return Db::getQuery()->deleteFrom('tramites')->where('nombre', $tramite)->execute();
+  }
+
+  public static function getTiposDocumentos()
+  {
+    $results = Db::getQuery()->from('tipos_documento')->fetchAll();
+
+    if ( empty($results) ) {
+      return [];
+    }
+
+    return array_column($results, 'nombre');
+  }
+
+  public static function addTipoDocumento(string $nombre)
+  {
+    Db::getQuery()->insertInto('tipos_documento')->values(['nombre' => $nombre])->execute();
+  }
+
+  public static function deleteTipoDocumento(string $nombre)
+  {
+    return Db::getQuery()->deleteFrom('tipos_documento')->where('nombre', $nombre)->execute();
   }
 }
