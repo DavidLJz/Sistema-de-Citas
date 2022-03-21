@@ -75,27 +75,27 @@ class Response
     self::apiResponse($message, $data, 400, $headers, $exit);
   }
 
-  public static function failNotFound(string $message, array $data=[], array $headers=[], bool $exit=true):void
+  public static function failNotFound(string $message='Not found', array $data=[], array $headers=[], bool $exit=true):void
   {
     self::apiResponse($message, $data, 404, $headers, $exit);
   }
 
-  public static function failInternal(string $message, array $data=[], array $headers=[], bool $exit=true):void
+  public static function failInternal(string $message='Internal error', array $data=[], array $headers=[], bool $exit=true):void
   {
     self::apiResponse($message, $data, 500, $headers, $exit);
   }
 
-  public static function failUnauthorized(string $message, array $data=[], array $headers=[], bool $exit=true):void
+  public static function failUnauthorized(string $message='Unauthorized', array $data=[], array $headers=[], bool $exit=true):void
   {
     self::apiResponse($message, $data, 401, $headers, $exit);
   }
 
-  public static function failForbidden(string $message, array $data=[], array $headers=[], bool $exit=true):void
+  public static function failForbidden(string $message='Forbidden', array $data=[], array $headers=[], bool $exit=true):void
   {
     self::apiResponse($message, $data, 403, $headers, $exit);
   }
 
-  public static function failMethodNotAllowed(string $message, array $data=[], array $headers=[], bool $exit=true):void
+  public static function failMethodNotAllowed(string $message='Method not allowed', array $data=[], array $headers=[], bool $exit=true):void
   {
     self::apiResponse($message, $data, 405, $headers, $exit);
   }
