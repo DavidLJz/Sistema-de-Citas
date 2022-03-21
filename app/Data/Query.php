@@ -30,7 +30,13 @@ class Query
 
   public static function getTramites()
   {
-    return Db::getQuery()->from('tramites')->fetchAll();
+    $results = Db::getQuery()->from('tramites')->fetchAll();
+
+    if ( empty($results) ) {
+      return [];
+    }
+
+    return array_column($results, 'nombre');
   }
 
   public static function addTramite(string $tramite)
