@@ -4,6 +4,10 @@ namespace App\Config;
 
 use App\Controller\Archivos;
 use App\Controller\Citas;
+use App\Controller\TiposDocumentos;
+use App\Controller\Tramites;
+use App\Controller\Ubicaciones;
+
 use App\Exceptions\HttpException;
 use App\Request;
 use Exception;
@@ -31,6 +35,33 @@ class Routes
       'GET' => [Archivos::class, 'get'],
       'PATCH' => [Archivos::class, 'update'],
       'DELETE' => [Archivos::class, 'delete'],
+    ],
+
+    'tipos_documentos' => [
+      'GET' => [TiposDocumentos::class, 'get'],
+      'POST' => [TiposDocumentos::class, 'add']
+    ],
+
+    'tipos_documentos/{nombre}' => [
+      'DELETE' => [TiposDocumentos::class, 'delete'],
+    ],
+
+    'tramites' => [
+      'GET' => [Tramites::class, 'get'],
+      'POST' => [Tramites::class, 'add']
+    ],
+
+    'tramites/{nombre}' => [
+      'DELETE' => [Tramites::class, 'delete'],
+    ],
+
+    'ubicaciones' => [
+      'GET' => [Ubicaciones::class, 'get'],
+      'POST' => [Ubicaciones::class, 'add']
+    ],
+
+    'ubicaciones/{nombre}' => [
+      'DELETE' => [Ubicaciones::class, 'delete'],
     ],
   ];
 
