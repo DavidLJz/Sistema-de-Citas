@@ -1,35 +1,32 @@
-[2022-03-20 20:02:13] ERROR - Error: Class 'App\Config\Router' not found in /var/www/html/citas/index.php:18
+[2022-03-20 21:38:58] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"GET","uri":"\/citas\/citas\/2?X=true"}
+[2022-03-20 21:39:52] ERROR - ParseError: syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /var/www/html/citas/app/Config/Routes.php:78
 Stack trace:
-#0 {main} - {"method":"GET","uri":"\/citas\/?X=true"}
-[2022-03-20 20:02:48] ERROR - Error: Class 'App\Config\Routes' not found in /var/www/html/citas/index.php:16
+#0 /var/www/html/citas/vendor/composer/ClassLoader.php(428): Composer\Autoload\includeFile('/var/www/html/c...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Config\\Rout...')
+#2 /var/www/html/citas/index.php(17): spl_autoload_call('App\\Config\\Rout...')
+#3 {main} - {"method":"GET","uri":"\/citas\/2?X=true"}
+[2022-03-20 21:42:21] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"GET","uri":"\/citas\/add"}
+[2022-03-20 21:42:26] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"POST","uri":"\/citas\/add"}
+[2022-03-20 21:42:46] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"POST","uri":"\/citas\/citas\/add"}
+[2022-03-20 21:56:53] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"POST","uri":"\/citas\/citas\/add"}
+[2022-03-20 21:59:00] ERROR - Error: Cannot pass parameter 4 by reference in /var/www/html/citas/app/Config/Routes.php:43
 Stack trace:
-#0 {main} - {"method":"GET","uri":"\/citas\/?X=true"}
-[2022-03-20 20:02:59] ERROR - Exception: Route not found in /var/www/html/citas/app/Config/Routes.php:42
+#0 /var/www/html/citas/index.php(17): App\Config\Routes::callRoute('POST', '/citas/citas/ad...')
+#1 {main} - {"method":"POST","uri":"\/citas\/citas\/add"}
+[2022-03-20 22:00:35] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"POST","uri":"\/citas\/citas\/add"}
+[2022-03-20 22:01:50] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"POST","uri":"\/citas\/citas\/add"}
+[2022-03-20 22:04:13] ERROR - TypeError: Return value of App\Request::getBody() must be of the type array or null, string returned in /var/www/html/citas/app/Request.php:40
 Stack trace:
-#0 /var/www/html/citas/index.php(16): App\Config\Routes::callRoute('GET', '/citas/?X=true')
-#1 {main} - {"method":"GET","uri":"\/citas\/?X=true"}
-[2022-03-20 20:06:23] ERROR - Exception: Route not found in /var/www/html/citas/app/Config/Routes.php:44
+#0 /var/www/html/citas/app/Controller/Citas.php(18): App\Request->getBody()
+#1 [internal function]: App\Controller\Citas::add(Object(App\Request))
+#2 /var/www/html/citas/app/Config/Routes.php(92): call_user_func_array(Array, Array)
+#3 /var/www/html/citas/index.php(17): App\Config\Routes::callRoute('POST', '/citas/citas')
+#4 {main} - {"method":"POST","uri":"\/citas\/citas"}
+[2022-03-20 22:14:16] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"POST","uri":"\/citas\/citas"}
+[2022-03-20 22:16:02] ERROR - TypeError: Argument 1 passed to App\Controller\Citas::delete() must be of the type int, object given in /var/www/html/citas/app/Controller/Citas.php:20
 Stack trace:
-#0 /var/www/html/citas/index.php(16): App\Config\Routes::callRoute('GET', '/citas/ ?X=true')
-#1 {main} - {"method":"GET","uri":"\/citas\/%20?X=true"}
-[2022-03-20 21:09:05] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"GET","uri":"\/citas\/verga?X=true"}
-[2022-03-20 21:11:33] ERROR - Error: Cannot unpack array with string keys in /var/www/html/citas/app/Config/Routes.php:68
-Stack trace:
-#0 /var/www/html/citas/index.php(17): App\Config\Routes::callRoute('GET', '/citas/verga?X=...')
-#1 {main} - {"method":"GET","uri":"\/citas\/verga?X=true"}
-[2022-03-20 21:11:55] ERROR - Error: Cannot unpack array with string keys in /var/www/html/citas/app/Config/Routes.php:69
-Stack trace:
-#0 /var/www/html/citas/index.php(17): App\Config\Routes::callRoute('GET', '/citas/verga?X=...')
-#1 {main} - {"method":"GET","uri":"\/citas\/verga?X=true"}
-[2022-03-20 21:16:03] ERROR - Error: Cannot unpack array with string keys in /var/www/html/citas/app/Config/Routes.php:68
-Stack trace:
-#0 /var/www/html/citas/index.php(17): App\Config\Routes::callRoute('GET', '/citas/verga?X=...')
-#1 {main} - {"method":"GET","uri":"\/citas\/verga?X=true"}
-[2022-03-20 21:16:34] ERROR - TypeError: Argument 1 passed to App\Controller\Citas::get() must be of the type int, string given in /var/www/html/citas/app/Controller/Citas.php:10
-Stack trace:
-#0 [internal function]: App\Controller\Citas::get('verga')
-#1 /var/www/html/citas/app/Config/Routes.php(68): call_user_func(Array, 'verga')
-#2 /var/www/html/citas/index.php(17): App\Config\Routes::callRoute('GET', '/citas/verga?X=...')
-#3 {main} - {"method":"GET","uri":"\/citas\/verga?X=true"}
-[2022-03-20 21:22:18] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"GET","uri":"\/citas\/2?X=true"}
-[2022-03-20 21:22:24] ERROR - App\Exceptions\HttpException: [404]: Not found - {"method":"GET","uri":"\/citas\/verga?X=true"}
+#0 [internal function]: App\Controller\Citas::delete(Object(App\Request))
+#1 /var/www/html/citas/app/Config/Routes.php(106): call_user_func_array(Array, Array)
+#2 /var/www/html/citas/index.php(17): App\Config\Routes::callRoute('DELETE', '/citas/citas')
+#3 {main} - {"method":"DELETE","uri":"\/citas\/citas"}
+[2022-03-20 22:18:46] ERROR - App\Exceptions\HttpException: [405]: Method not allowed - {"method":"DELETE","uri":"\/citas\/citas"}
