@@ -9,7 +9,7 @@ class Db {
   protected static $query;
 
   protected static $db = [
-    'host' => 'localhost',
+    'host' => 'mysql', # localhost
     'database' => 'dbcitas',
     'username' => 'dbuser',
     'password' => 'dbpass'
