@@ -27,4 +27,19 @@ class Query
   {
     return Db::getQuery()->deleteFrom('citas', $id)->execute();
   }
+
+  public static function getTramites()
+  {
+    return Db::getQuery()->from('tramites')->fetchAll();
+  }
+
+  public static function addTramite(string $tramite)
+  {
+    Db::getQuery()->insertInto('tramites')->values(['nombre' => $tramite])->execute();
+  }
+
+  public static function deleteTramite(string $tramite)
+  {
+    return Db::getQuery()->deleteFrom('citas')->where('tramite', $tramite)->execute();
+  }
 }
