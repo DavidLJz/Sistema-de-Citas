@@ -10,7 +10,6 @@ class Citas
 {
   public function get(int $id=0)
   {
-    echo 'hola mudnom ' . $id;
   }
 
   public function add(Request $request)
