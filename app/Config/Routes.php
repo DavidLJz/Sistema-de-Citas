@@ -46,11 +46,8 @@ class Routes
           throw new HttpException('Method not allowed', 405);
         }
 
-        if ( !is_callable($methods[ $method ]) ) {
-          throw new Exception('Invalid route');
-        }
-
         $func = $methods[ $method ];
+        
       } else {
         if ( strpos($route, explode('/', $route_name)[0]) !== 0 ) {
           continue;
@@ -72,6 +69,10 @@ class Routes
         }
 
         $func = $methods[ $method ];
+      }
+
+      if ( !is_callable($func) ) {
+        throw new Exception('Invalid route');
       }
 
       call_user_func($func, ...$uri_params);
