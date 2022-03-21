@@ -1,0 +1,14 @@
+[2022-03-20 20:02:13] ERROR - Error: Class 'App\Config\Router' not found in /var/www/html/citas/index.php:18
+Stack trace:
+#0 {main} - {"method":"GET","uri":"\/citas\/?X=true"}
+[2022-03-20 20:02:48] ERROR - Error: Class 'App\Config\Routes' not found in /var/www/html/citas/index.php:16
+Stack trace:
+#0 {main} - {"method":"GET","uri":"\/citas\/?X=true"}
+[2022-03-20 20:02:59] ERROR - Exception: Route not found in /var/www/html/citas/app/Config/Routes.php:42
+Stack trace:
+#0 /var/www/html/citas/index.php(16): App\Config\Routes::callRoute('GET', '/citas/?X=true')
+#1 {main} - {"method":"GET","uri":"\/citas\/?X=true"}
+[2022-03-20 20:06:23] ERROR - Exception: Route not found in /var/www/html/citas/app/Config/Routes.php:44
+Stack trace:
+#0 /var/www/html/citas/index.php(16): App\Config\Routes::callRoute('GET', '/citas/ ?X=true')
+#1 {main} - {"method":"GET","uri":"\/citas\/%20?X=true"}
